@@ -1,0 +1,188 @@
+def main():
+
+    sum = 0.0
+    option = 0
+    dish = ""
+    dish_cost = 0.0
+    name = ""
+
+    pretty()
+
+    intro()
+    
+    name = get_name()
+
+    option = get_option()
+
+    while option == 1:
+
+        dish = get_dish()
+        dish_cost = get_dish_cost(dish)
+        sum = calc_sum(dish_cost, sum)
+        option = get_option()
+
+    if option == 2:
+        
+        tip_yn = get_tip_yn()
+        
+        if tip_yn == 'yes':
+            tip_amount = calc_tip_amount(sum)
+            tip_amount = round(tip_amount, 2)
+            total = calc_total(sum, tip_amount)
+            total = round(total, 2)
+            print_total(total, name)
+            print_goodbye()
+
+        else:
+            print_sum(name, sum)
+            print_goodbye()
+
+    pretty()
+        
+
+
+
+def get_option():
+
+    print("")
+    print("1. Add Dish")
+    print("2. QUIT")
+    print("")
+    option = int(input("Select Option: "))
+    return option
+    
+
+
+def get_name():
+    
+    print("")
+    name = input("Please enter your name: ")
+    return name
+
+
+
+def intro():
+
+    print("")
+    print("Welcome to Jewel's Personal Duckhouse Program!")
+
+
+
+def pretty(): 
+
+    print("")
+    print("________________________________________________________________")
+
+
+
+def get_dish():
+    
+    print("")
+    dish = input("Please enter the dish you would like to order: ")
+    return dish
+    
+
+
+def get_dish_cost(dish):
+
+    print("")
+    dish_cost = float(input(f"Please enter the cost of the {dish}: "))
+    return dish_cost
+
+
+
+def calc_sum(dish_cost, sum):
+    
+    sum = dish_cost + sum
+    pretty()
+    print("")
+    print(f"The sum thus far is: ${sum}")
+    pretty()
+    return sum
+
+
+
+def get_tip_yn():
+
+    print("")
+    tip_yn = input(
+        "Would you like to leave a tip today?\n"
+        "Please print 'yes' or 'no'. ")
+    return tip_yn
+
+
+
+def calc_tip_amount(sum):
+
+    print("")
+    print(f"1. A 20% tip would make the total: ${sum}")
+    (" + ${round(sum * 0.20,2)} = ${round(sum * 1.20, 2)}")
+    print(f"2. A 15% tip would make the total: ${sum}")
+    (" + ${round(sum * 0.15, 2)} = ${round(sum * 1.15, 2)}")
+    print(f"3. A 10% tip would make the total: ${sum}")
+    (" + ${round(sum * 0.10, 2)} = ${round(sum * 1.10, 2)}")
+    print(f"4. Custom")
+    print("")
+    tip_amount = int(input("Please enter 1, 2 , 3 or 4: "))
+    
+    if tip_amount == 1:
+        return tip_amount
+
+    elif tip_amount == 2:
+        return tip_amount
+
+    elif tip_amount == 3:
+        return tip_amount
+
+    else:
+        tip_amount = float(input("Please enter the amount you "
+         "would like to tip(20% would be 0.20): "))
+        return tip_amount
+
+
+
+def calc_total(sum, tip_amount):
+
+    if tip_amount == 1:
+        total = sum * 1.20
+        return total
+
+    elif tip_amount == 2:
+        total = sum * 1.15
+        return total
+
+    elif tip_amount == 3:
+        total = sum * 1.10
+        return total
+
+    else:
+        total = sum * (1.0 + tip_amount)
+        return total
+
+
+
+def print_sum(name, sum):
+
+    print("")
+    print(f"{name}, your total today is ${sum}.")
+
+
+
+def print_total(total, name):
+
+    print("")
+    if total > 0:
+        print(f"{name}, your total today is ${total}!")
+    else: 
+        print(f"{name}, you have not ordered anything.")
+
+
+
+def print_goodbye():
+
+    print("")
+    print("Thank you for using my calculator! Goodbye.")
+
+
+
+main()
